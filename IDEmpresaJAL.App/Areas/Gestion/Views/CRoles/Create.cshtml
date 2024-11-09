@@ -1,0 +1,69 @@
+﻿@model IDEmpresaJAL.Entity.Models.CRoles
+
+@{
+    ViewData["Title"] = "Crear tipo de solicitante";
+}
+
+<div class="py-3 container-fluid">
+    <div class="card shadow mb-4 pb-5">
+        <div class="card-header py-3 bg-primary">
+            <h4 class="font-weight-bold text-white p-2">Roles de la plataforma</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-9 pt-3">
+                    <h6 class="text-primary">Administrar roles</h6>
+                </div>
+
+            </div>
+            <hr />
+            <form method="post" asp-action="Create">
+
+                <div class="row">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row p-3">
+                        <div class="col-10">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Rol" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                <label asp-for="Rol"></label>
+                                <span asp-validation-for="Rol" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group-row">
+                        <div class="col-8">
+                            <partial name="_VistaCrearVolver"></partial>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+
+    @if (TempData["err"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal({
+                    title: "Error!",
+                    text: "El nombre del rol que deseas agregar ya se encuentra registrado en el sistema.",
+                    type: "error"
+                });
+            };
+        </script>
+    }
+
+}

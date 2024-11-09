@@ -1,0 +1,129 @@
+﻿@model IDEmpresaJAL.Entity.ViewModel.VMLogin
+@{
+    ViewData["Title"] = "Acceso";
+    Layout = "~/Views/Shared/_login.cshtml";
+}
+
+<div class="row pt-5">
+    <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-xs-10 offset-xs-1 pt-2">
+        <div class="card shadow d-flex align-items-stretch pb-3">
+            <div class="text-center">
+                <a href="#"> <img src="~/img/idEmpresa_logo.png" width="300vw" /></a>
+                <hr />
+                <div class="row pt-2 pb-2">
+                    <div class="col-10 offset-1 text-primary small">
+                        ID Empresa es tu punto de entrada a los apoyos que ofrece el Gobierno del Estado de Jalisco por medio de la Secretaría de Desarrollo Económico.
+                        <form method="post" asp-action="Login">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="row pt-3">
+                                <div class="col-12 text-center fw-bold">
+                                    Iniciar sesión
+                                </div>
+                                <div class="col-12 pt-3">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="usuario" class="form-control" id="floatingInput" placeholder="1000" >
+                                        <label>RFC o usuario</label>
+                                        <span asp-validation-for="usuario" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12 pt-2">
+                                    <div class="form-floating mb-3">
+                                        <input type="password" asp-for="password" class="form-control" id="floatingInput" placeholder="1000" >
+                                        <label>Contraseña</label>
+                                        <span asp-validation-for="password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                               
+
+                                <div class="col-12 pt-2">
+                                    <button type="submit" class=" btn btn-success form-control">Ingresar&nbsp;<i class="bi bi-box-arrow-in-right"></i></button>
+                                </div>
+                                
+                            </div>
+                        </form>
+                        <div class="row">
+                            <div class="col-12 pt-2 text-center">
+                                <a asp-action="Recuperar" class="btn-link text-success fw-bold">¿Olvidaste tu contraseña?</a>
+                            </div>
+                            <div class="col-12 pt-3">
+                                <span class="text-secondary text-center fw-bold">¿Aún no tienes cuenta?</span>
+                            </div>
+                            <div class="col-12 pt-2">
+                                <button type="submit" class=" btn btn-primary form-control">Crear cuenta&nbsp;<i class="bi bi-person-add"></i></button>
+                            </div>
+                            <div class="col-12 pt-3 text-center">
+                                <a class="btn-link text-primary fw-bold" href="https://siga.sedeco.jalisco.gob.mx/manualUsuarioIDEmpresa.pdf" target="_blank">Manual de usuario IDEmpresaJalisco&nbsp;<i class="bi bi-file-earmark-pdf"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                <span class="small p-2 justify-content-around">
+                    La Secretaría de Desarrollo Económico y el Gobierno de Jalisco a través de sus dependencias, <span class="text-danger">NO</span> solicitan datos sensibles para condicionar la entrega de apoyos económicos a través de los programas.
+                    <br />
+                    Evita caer en fraudes o extorsión, te pedimos denunciar cualquier irregularidad a la autoridad competente
+                </span>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+@section Scripts {
+    
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+
+    }
+    @if (TempData["pass"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal({
+                    title: "Error!",
+                    text: "La contraseña no es correcta",
+                    type: "error"
+                });
+            };
+        </script>
+    }
+    @if (TempData["user"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal({
+                    title: "Error!",
+                    text: "El usuario no se encuentra registrado en el sistema",
+                    type: "error"
+                });
+            };
+        </script>
+    }
+    @if (TempData["creado"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal({
+                    title: "OK!",
+                    text: "Se activó correctamente el usuario, ahora puedes iniciar sesión en IDEmpresaJalisco",
+                    type: "success"
+                });
+            };
+        </script>
+    }
+
+    @if (TempData["recu_ok"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal({
+                    title: "OK!",
+                    text: "La solicitud fue procesada correctamente, se ha enviado un correo electrónico a la dirección asociada con el usuario para cambiar la contraseña.",
+                    type: "success"
+                });
+            };
+        </script>
+    }
+}
+

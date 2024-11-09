@@ -1,0 +1,92 @@
+﻿@model IDEmpresaJAL.Entity.ViewModel.VMRecurso
+
+@{
+    ViewData["Title"] = "Crear tipo de solicitante";
+}
+
+<div class="py-3 container-fluid">
+    <div class="card shadow mb-4 pb-5">
+        <div class="card-header py-3 bg-primary">
+            <h4 class="font-weight-bold text-white p-2">Roles de la plataforma</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-9 pt-3">
+                    <h6 class="text-primary">Administrar roles</h6>
+                </div>
+
+            </div>
+            <hr />
+            <form method="post" asp-action="Edit">
+
+                <div class="row px-2 offset-1">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row p-3">
+
+                        <div class="col-10">
+                            <div class="form-floating mb-3">
+                                <input asp-for="RolesEntity.Rol" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                <label asp-for="RolesEntity.Rol"></label>
+                                <span asp-validation-for="RolesEntity.Rol" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        @Html.HiddenFor(x => x.RolesEntity.Id)
+                        @Html.HiddenFor(x => x.RRolRecurso.Id)
+
+                    </div>
+                    <hr>
+                    <h5 class="text-secondary ">Agregar recursos para el Rol</h5>
+                    <div class="row p-3 ">
+                        <div class="col-10">
+                            <table class="table">
+                                <tbody>
+                                    @for (var i = 0; i < Model.ListaRecursos.Count(); i++)
+                                    {
+                                        <tr>
+                                            <td>
+                                                 <div class="form-check">
+                                                   <input type="hidden" asp-for="@Model.ListaRecursos[i].Id">
+                                                    <input type="hidden" asp-for="@Model.ListaRecursos[i].Recurso">
+                                                    <input asp-for="@Model.ListaRecursos[i].Seleccionado" class="form-check-input">
+                                                     <label class="form-check-label text-black-50" asp-for="@Model.ListaRecursos[i].Seleccionado">
+                                                        <b>&nbsp;@Model.ListaRecursos[i].Recurso</b>
+                                                     </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row p-3">
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-secondary form-control">&nbsp;<i class="bi bi-chevron-double-left"></i>Regresar</a>
+                        </div>
+                        &nbsp;
+                        <div class="col">
+
+                            <button type="submit" class=" btn btn-primary form-control">Guardar&nbsp;<i class="bi bi-floppy2"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+
+
+
+}

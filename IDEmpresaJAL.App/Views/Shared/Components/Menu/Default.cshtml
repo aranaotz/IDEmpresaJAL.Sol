@@ -1,0 +1,25 @@
+﻿@model IDEmpresaJAL.Entity.ViewModel.VMMenu
+
+@foreach(var item in Model.ListaMenu)
+{
+    @if (item.N==1)
+    {
+        <span class="sidebar-link fw-bold text-white ps-3 small">
+            <i class="@item.IconoContenedor"></i>
+            @item.Contenedor
+        </span>
+            
+       
+    }  
+    @if (item.N==2)
+    {
+        <ul id="@item.Contenedor" class=" list-unstyled ">
+            <li class="sidebar-item">
+                <a asp-area="@item.Area" asp-controller="@item.Controlador" asp-action="@item.Accion" class="sidebar-link">
+                    <i class="@item.IconoRecurso"></i>@item.Recurso
+                </a>
+            </li>
+        </ul>
+    }
+}
+   

@@ -1,0 +1,62 @@
+﻿@model IDEmpresaJAL.Entity.ViewModel.VMCredenciales
+@{
+    ViewData["Title"] = "Credenciales";
+    Layout = "~/Views/Shared/_login.cshtml";
+}
+
+<div class="row pt-5">
+    <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-xs-10 offset-xs-1 pt-2">
+        <div class="card shadow d-flex align-items-stretch pb-3">
+            <div class="text-center">
+                <a href="#"> <img src="~/img/idEmpresa_logo.png" width="300vw" /></a>
+                <hr />
+                <div class="row pt-2 pb-2">
+                    <div class="col-10 offset-1 text-primary small">
+                        <span class="text-center fw-bold">Activación de cuenta</span>
+                        <div class="small text-muted pt-3">
+                            <strong>La contraseña debe contener los siguientes requisitos </strong><br />
+                            <ul>
+                                <li>Por lo menos 8 caracteres</li>
+                                <li>Por lo menos una letra mayúscula</li>
+                                <li>Por lo menos una letra minúscula</li>
+                                <li>Por lo menos un dígito (0 a 9)</li>
+                                <li>Por lo menos un carácter especial (No espacios)</li>
+                            </ul>
+                        </div>
+                        <form method="post" asp-action="Credenciales">
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="row pt-3">
+                                <div class="col-12">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Password" type="password" class="form-control" id="floatingInput" placeholder="1000">
+                                        <label>Establecer contraseña</label>
+                                        <span asp-validation-for="Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-12 pt-2">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="ConfirmPassword" type="password" class="form-control" id="floatingInput" placeholder="1000" >
+                                        <label>Repetir contraseña</label>
+                                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                        <input  type="hidden" asp-for="request"/>
+                                       
+                                    </div>
+                                </div>
+
+                                <div class="col-12 pt-2">
+                                    <button type="submit" class=" btn btn-success form-control">Estabecer contraseña&nbsp;<i class="bi bi-person-fill-lock"></i></button>
+                                </div>
+
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+                
+                
+            </div>
+        </div>
+    </div>
+
+</div>
+

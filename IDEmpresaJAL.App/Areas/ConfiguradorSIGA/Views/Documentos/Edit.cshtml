@@ -1,0 +1,129 @@
+﻿@model IDEmpresaJAL.Entity.ViewModel.VMCDocumentos
+
+@{
+    ViewData["Title"] = "Documentos";
+}
+<div class="py-3 container-fluid ">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 bg-primary">
+            <h4 class="font-weight-bold text-white p-2">Documentos</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-9 pt-3">
+                    <h6 class="text-primary">Editar documento</h6>
+                </div>
+
+            </div>
+            <hr />
+            <form method="post" asp-action="Edit">
+
+                <div class="row px-2 offset-1">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+                    <div class="row p-3">
+
+                        <div class="col-10">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Documentos.Documento" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                <label asp-for="Documentos.Documento"></label>
+                                <span asp-validation-for="Documentos.Documento" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="form-floating mb-3">
+                                <textarea asp-for="Documentos.Descripcion" class="form-control" style="height:100px;"></textarea>
+                                <label asp-for="Documentos.Descripcion"></label>
+                                <span asp-validation-for="Documentos.Descripcion" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-5">
+
+                            @Html.DropDownListFor(m => m.Documentos.TipoDocumentoId, Model.ListaTipoDocumento,
+                                     "-Seleccionar un tipo de documento-", new { id = "ddl_tipo_documento", @class = "form-control", style = "height: 60px" })
+                            <span asp-validation-for="Documentos.TipoDocumentoId" class="text-danger"></span>
+
+                        </div>
+                        <div class="col-5">
+
+                            @Html.DropDownListFor(m => m.Documentos.TipoCargaId, Model.ListaTipoCarga,
+                                     "-Seleccionar el formato del documento-", new { @class = "form-control", style = "height: 60px" })
+                            <span asp-validation-for="Documentos.TipoCargaId" class="text-danger"></span>
+                            @Html.HiddenFor(x => x.ListaTipoCarga)
+                            @Html.HiddenFor(x => x.ListaTipoDocumento)
+                            @Html.HiddenFor(x => x.DireccionGeneralId)
+                            @Html.HiddenFor(x=> x.Documentos.Id)
+                        </div>
+
+                        <div class="col-5 pt-5" id="divTipoDocumento">
+                            @if(Model.Documentos.Nacional ==true)
+                            {
+                                <label><input type="radio" asp-for="Documentos.Nacional" checked="checked" value="0" name="Nacional" />&nbsp;Nacional</label>
+                                <label><input type="radio" asp-for="Documentos.Nacional"  value="1" name="Nacional" />&nbsp;Extranjero</label>
+                            }
+                            else
+                            {
+                                <label><input type="radio" asp-for="Documentos.Nacional"  value="0" name="Nacional" />&nbsp;Nacional</label>
+                                <label><input type="radio" asp-for="Documentos.Nacional" checked="checked" value="1" name="Nacional" />&nbsp;Extranjero</label>
+                            }
+                            
+                        </div>
+
+                    </div>
+                    <hr class="col-10" />
+                    <div class="row ">
+                        <div class="col-7 ">
+                            <h6 class="text-primary pt-1">Requisitos del documento</h6>
+                        </div>
+                        <div class="col-3">
+                            <a  href="@Url.Action("AddRequisitos", new{id=TempData["docId"]})" class="btn btn-sm btn-success w-100"><i class="bi bi-plus-lg"></i> Agregar requisito</a>
+                        </div>
+                    </div>
+                    <input type="hidden" value="@TempData["docId"]" id="documento_id" />
+                    <div class="row pt-3">
+                        <div class="col-sm-10 pt-3">
+                            <table id="cat_documentos_requisitos" class="table table-striped table-bordered w-100 small" style="text-align:justify">
+                                <thead>
+                                    <tr>
+                                        <th>Requisito</th>
+                                        <th class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-group-row pt-5 pb-5">
+                        <div class="col-8">
+                            <partial name="_VistaCrearVolver"></partial>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+   <script src="~/js/configuradorSiga_js/cdocumentos_requisitos.js"></script>
+    @{
+            <partial name="_ValidationScriptsPartial" />
+
+
+    }
+    <script>
+        var div = document.getElementById("divTipoDocumento");
+        $(document).ready(function () {
+            $("#ddl_tipo_documento").change(function () {
+                const tipoId = $(this).val();
+                if (tipoId == 4) {
+                    div.style.display = "block";
+                }
+                else {
+                    div.style.display = "none";
+                }
+            });
+        });
+    </script>
+   
+}

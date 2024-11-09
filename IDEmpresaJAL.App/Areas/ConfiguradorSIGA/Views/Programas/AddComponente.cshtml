@@ -1,0 +1,95 @@
+﻿@model IDEmpresaJAL.Entity.Models.TProgramasPartidas
+
+@{
+    ViewData["title"] = "Programas";
+}
+
+<div class="py-3 container-fluid ">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 bg-primary">
+            <h4 class="font-weight-bold text-white p-2">Programas</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-9 pt-3">
+                    <h6 class="text-primary">Agregar componente al programa</h6>
+                </div>
+
+            </div>
+            <hr />
+            <form method="post" asp-action="AddComponente">
+
+                <div class="row px-2 offset-1">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ProgramaId" value="@TempData["pId"]" />
+                   
+                    <div class="row p-3">
+                        
+                        <div class="col-2">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Componente" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                <label asp-for="Componente"></label>
+                                <span asp-validation-for="Componente" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-5">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Partida" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                <label asp-for="Partida"></label>
+                                <span asp-validation-for="Partida" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Monto" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                <label asp-for="Monto"></label>
+                                <span asp-validation-for="Monto" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-10 pt-3">
+                            <div class="form-floating mb-3">
+                                <textarea asp-for="Descripcion" class="form-control" style="height:150px;"></textarea>
+                                <label asp-for="Descripcion"></label>
+                                <span asp-validation-for="Descripcion" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-5 pb-5">
+                        <div class="col-4">
+                            <a asp-action="Index" class="btn btn-secondary form-control">&nbsp;<i class="bi bi-chevron-double-left"></i>Regresar</a>
+                        </div>
+                       
+                        <div class="col-4">
+                            <button type="submit" class=" btn btn-primary form-control">Guardar&nbsp;<i class="bi bi-floppy2"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+
+    @if (TempData["err"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal({
+                    title: "Error!",
+                    text: "El nombre de la dirección o área que deseas agregar ya se encuentra registrado en el sistema.",
+                    type: "error"
+                });
+            };
+        </script>
+    }
+}
+

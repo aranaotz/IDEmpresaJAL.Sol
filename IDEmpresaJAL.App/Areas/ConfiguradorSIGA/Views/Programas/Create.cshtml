@@ -1,0 +1,189 @@
+﻿@model IDEmpresaJAL.Entity.ViewModel.VMProgramas
+
+@{
+    ViewData["Title"] = "Programas";
+}
+<div class="py-3 container-fluid ">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 bg-primary">
+            <h4 class="font-weight-bold text-white p-2">Programas públicos</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-9 pt-3">
+                    <h6 class="text-primary">Crear Programa</h6>
+                </div>
+
+            </div>
+            <hr />
+            <form method="post" asp-action="Create">
+
+                <div class="row px-2 offset-1">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row p-3">
+                        <div class="col-10">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Programas.Nombre" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                <label asp-for="Programas.Nombre"></label>
+                                <span asp-validation-for="Programas.Nombre" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <span class="text-muted small">Tipo de programa</span>
+                            @Html.DropDownListFor(m => m.Programas.TipoProgramaId, Model.ListaTipoPrograma,
+                                     "-Seleccionar un tipo de programa-", new { @class = "form-control", style = "height: 60px" })
+                            <span asp-validation-for="Programas.TipoProgramaId" class="text-danger"></span>
+                        </div>
+                        <div class="col-10 pt-3">
+                            <span class="text-muted small" >Dirección General o Área encargada del programa</span>
+                            @Html.DropDownListFor(m => m.Programas.DireccionGeneralId, Model.ListaDireccionesGenerales,
+                                     "-Seleccionar una dirección general o área-", new { @class = "form-control", style = "height: 60px" })
+                            <span asp-validation-for="Programas.DireccionGeneralId" class="text-danger"></span>
+                        </div>
+                        <div class="col-10 pt-3">
+                            <div class="form-floating mb-3">
+                                <textarea asp-for="Programas.ObjetivoGeneral" class="form-control" style="height:150px;"></textarea>
+                                <label asp-for="Programas.ObjetivoGeneral"></label>
+                                <span asp-validation-for="Programas.ObjetivoGeneral" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-10 pt-3">
+                            <div class="form-check">
+                                <input asp-for="Programas.PermiteMultiplesProyectos" class="form-check-input">
+                                <label class="form-check-label text-black-50" asp-for="Programas.PermiteMultiplesProyectos">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-10 pt-3">
+                            <div class="form-check">
+                                <input asp-for="Programas.PermiteMultiplesConvocatorias" class="form-check-input">
+                                <label class="form-check-label text-black-50" asp-for="Programas.PermiteMultiplesConvocatorias">
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-10 pt-3">
+                            <span class="text-muted small">Institución bancaria</span>
+                            @Html.DropDownListFor(m => m.Programas.BancaId, Model.ListaBanca,
+                                     "-Seleccionar una institución bancaria-", new { @class = "form-control", style = "height: 60px" })
+                            <span asp-validation-for="Programas.BancaId" class="text-danger"></span>
+                        </div>
+                        <div class="col-10 pt-3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Programas.Numcuenta" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                        <label asp-for="Programas.Numcuenta"></label>
+                                        <span asp-validation-for="Programas.Numcuenta" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-8">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Programas.CLABE" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                        <label asp-for="Programas.CLABE"></label>
+                                        <span asp-validation-for="Programas.CLABE" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-10 pt-3">
+                            <div class="row">
+                                <div class="col-4">
+                                    <div class="form-floating mb-3">
+                                        <input type="number" asp-for="Programas.Presupuesto" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                        <label asp-for="Programas.Presupuesto"></label>
+                                        <span asp-validation-for="Programas.Presupuesto" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Programas.ClavePresupuestaria" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                        <label asp-for="Programas.ClavePresupuestaria"></label>
+                                        <span asp-validation-for="Programas.ClavePresupuestaria" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                 <div class="col-4">
+                                    <div class="form-floating mb-3">
+                                        <input asp-for="Programas.CodigoDenominacion" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                        <label asp-for="Programas.CodigoDenominacion"></label>
+                                        <span asp-validation-for="Programas.CodigoDenominacion" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="col-10 pt-3">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Programas.ClaveProgramaPresupuestal" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                    <label asp-for="Programas.ClaveProgramaPresupuestal"></label>
+                                    <span asp-validation-for="Programas.ClaveProgramaPresupuestal" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Programas.DescripcionPartida" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                    <label asp-for="Programas.DescripcionPartida"></label>
+                                    <span asp-validation-for="Programas.DescripcionPartida" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-10 pt-3">
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Programas.FechaInicio" type="date" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                    <label asp-for="Programas.FechaInicio"></label>
+                                    <span asp-validation-for="Programas.FechaInicio" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-floating mb-3">
+                                    <input asp-for="Programas.FechaFin" type="date" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                    <label asp-for="Programas.FechaFin"></label>
+                                    <span asp-validation-for="Programas.FechaFin" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-floating mb-3">
+                                    <input type="color" asp-for="Programas.Color" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                    <label asp-for="Programas.Color"></label>
+                                    <span asp-validation-for="Programas.Color" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group-row pt-5 pb-5">
+                        <div class="col-8">
+                            <partial name="_VistaCrearVolver"></partial>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+
+    
+    @if (TempData["err"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal({
+                    title: "Error!",
+                    text: "El nombre de la categoría que deseas agregar ya se encuentra registrado en el sistema.",
+                    type: "error"
+                });
+            };
+        </script>
+    }
+}

@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Error";
+    Layout = "~/Views/Shared/_login.cshtml";
+}
+
+<div class="row pt-5">
+    <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-xs-10 offset-xs-1 pt-2">
+        <div class="card shadow d-flex align-items-stretch pb-3">
+            <div class="text-center">
+                <a href="#"> <img src="~/img/idEmpresa_logo.png" width="300vw" /></a>
+                <hr />
+                <div class="row pt-2 pb-2">
+                    <div class="col-10 offset-1 text-primary small">
+                        <h2 class="text-center fw-bold text-primary">@ViewBag.ErrorTitle</h2>
+                        <h1 class="pt-3 text-center text-primary"><i class="bi bi-emoji-frown"></i></h1>
+                        <div class="small text-muted text-center" >
+                            <strong>@ViewBag.ErrorMessage</strong><br />
+                            
+                            <div class="row pt-3">
+                                
+                                <div class="col-10 offset-1 pt-4">
+
+                                    <a asp-action="Login" class="btn btn-primary form-control"><i class="bi bi-house-door-fill"></i>&nbsp;Inicio de sesión</a>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+
+    }
+
+}
+
+

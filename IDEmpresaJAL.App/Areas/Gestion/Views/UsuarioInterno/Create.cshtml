@@ -1,0 +1,118 @@
+﻿@model IDEmpresaJAL.Entity.ViewModel.VMUsuarioInterno
+@{
+    ViewData["Title"] = "Usuarios";
+}
+<div class="py-3 container-fluid">
+    <div class="card shadow mb-4 pb-5">
+        <div class="card-header py-3 bg-primary">
+            <h4 class="font-weight-bold text-white p-2">Mantenimiento de usuarios</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-9 pt-3">
+                    <h6 class="text-primary">Crear un nuevo usuario</h6>
+                </div>
+
+            </div>
+            <hr />
+            <form method="post" asp-action="Create">
+
+                <div class="row px-2 offset-1">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <span class="small">
+                        El <strong>inicio de sesión</strong> es el identificador con el que el usuario ingresará a la plataforma. Le recomendamos que éste contenga un formato común entre los usuarios que genere.
+                        Por ejemplo "pedro.rodriguez".
+                    </span>
+                    <div class="row pt-4">
+                        <div class="col-3">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Generales.RFC" class="form-control" id="floatingInput" placeholder="Tipo de solicitante">
+                                <label>Inicio de sesión</label>
+                                <span asp-validation-for="Generales.RFC" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Generales.Nombre" class="form-control" id="floatingInput" placeholder="Tipo de solicitante">
+                                <label asp-for="Generales.Nombre"></label>
+                                <span asp-validation-for="Generales.Nombre" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Generales.PrimerApellido" class="form-control" id="floatingInput" placeholder="Tipo de solicitante">
+                                <label asp-for="Generales.PrimerApellido"></label>
+                                <span asp-validation-for="Generales.PrimerApellido" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Generales.SegundoApellido" class="form-control" id="floatingInput" placeholder="Tipo de solicitante">
+                                <label asp-for="Generales.SegundoApellido"></label>
+                                <span asp-validation-for="Generales.SegundoApellido" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-6">
+                            <div class="form-floating mb-3">
+                                <input asp-for="Generales.CorreoElectronico" class="form-control" id="floatingInput" placeholder="Tipo de solicitante">
+                                <label asp-for="Generales.CorreoElectronico"></label>
+                                <span asp-validation-for="Generales.CorreoElectronico" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-6">
+
+                            @Html.DropDownListFor(m => m.Generales.DireccionGeneralId, Model.ListaDirecciones,
+                                     "-Seleccionar una Dirección General-", new { @class = "form-control", style = "height: 60px" })
+                            <span asp-validation-for="Generales.DireccionGeneralId" class="text-danger"></span>
+                            @Html.HiddenFor(x => x.ListaRoles)
+                            
+                        </div>
+                    </div>
+                   
+
+                    <div class="form-group-row pt-5">
+                        <div class="col-8">
+                            <partial name="_VistaCrearVolver"></partial>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    @{
+        <partial name="_ValidationScriptsPartial"></partial>
+    }
+
+    @if (TempData["errusuario"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal({
+                    title: "Error!",
+                    text: "El nombre de usuario que deseas agregar ya se encuentra registrado en el sistema.",
+                    type: "error"
+                });
+            };
+        </script>
+    }
+
+    @if (TempData["errcorreo"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal({
+                    title: "Error!",
+                    text: "El correo que deseas agregar ya se encuentra registrado en el sistema.",
+                    type: "error"
+                });
+            };
+        </script>
+    }
+
+}

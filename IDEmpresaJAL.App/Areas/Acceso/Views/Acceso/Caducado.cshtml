@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewData["Title"] = "Caducado";
+    Layout = "~/Views/Shared/_login.cshtml";
+}
+
+<div class="row pt-5">
+    <div class="col-lg-4 offset-lg-4 col-md-8 offset-md-2 col-xs-10 offset-xs-1 pt-2">
+        <div class="card shadow d-flex align-items-stretch pb-3">
+            <div class="text-center">
+                <a href="#"> <img src="~/img/idEmpresa_logo.png" width="300vw" /></a>
+                <hr />
+                <div class="row pt-2 pb-2">
+                    <div class="col-10 offset-1 text-primary small">
+                        <span class="text-center fw-bold">Activación de cuenta</span>
+                        <div class="small text-muted" style="text-align:justify;">
+                            <strong>El vínculo que lo trajo hasta aquí ya no esta activo, puede deberse a alguno de los siguientes casos:  </strong><br />
+                            <div class="row pt-3">
+                                <div class="col-1 fw-bold">
+                                    1
+                                </div>
+                                <div class="col-11">
+                                    El vínculo esta incompleto. Copie completamente la liga que le fue enviada y péguela en la barra de direcciones de su navegador
+                                </div>
+                            </div>
+                            <div class="row pt-1">
+                                <div class="col-1 fw-bold">
+                                    2
+                                </div>
+                                <div class="col-11">
+                                    El vínculo ya fué utilizado anteriormente. Solicite "recuperar contraseña" en el sitio inicial de ID Empresa.
+                                </div>
+                            </div>
+                            <div class="row pt-1">
+                                <div class="col-1 fw-bold">
+                                    3
+                                </div>
+                                <div class="col-11">
+                                    Han pasado mas de 5 horas desde que se le envió el correo con el vínculo de activación. Si es un registro de nuevo usuario vuelva a registrarse, si es una recuperación de contraseña, vuelva a solicitarla en el sitio inicial de ID Empresa.
+                                </div>
+                                <div class="col-10 offset-1 pt-4">
+                                  
+                                    <a asp-action="Login" class="btn btn-primary form-control"><i class="bi bi-house-door-fill"></i>&nbsp;Inicio de sesión</a>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+    
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+
+    }
+   
+}
+

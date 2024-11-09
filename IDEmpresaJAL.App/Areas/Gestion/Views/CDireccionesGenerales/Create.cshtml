@@ -1,0 +1,89 @@
+﻿@model IDEmpresaJAL.Entity.Models.CDireccionGeneral
+
+@{
+    ViewData["Title"] = "DireccionesÁreas";
+}
+<div class="py-3 container-fluid ">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 bg-primary">
+            <h4 class="font-weight-bold text-white p-2">Direcciones Generales / Áreas</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-9 pt-3">
+                    <h6 class="text-primary">Crear dirección o área</h6>
+                </div>
+                
+            </div>
+            <hr />
+            <form method="post" asp-action="Create">
+
+                <div class="row px-2 offset-1">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row p-3">
+                        <div class="col-10">
+                            <div class="form-floating mb-3">
+                                <input asp-for="NombreDireccion" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                <label asp-for="NombreDireccion"></label>
+                                <span asp-validation-for="NombreDireccion" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="form-floating mb-3">
+                                <input asp-for="NombreEncargado" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                <label asp-for="NombreEncargado"></label>
+                                <span asp-validation-for="NombreEncargado" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="form-floating mb-3">
+                                <input asp-for="EncargadoCargo" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                <label asp-for="EncargadoCargo"></label>
+                                <span asp-validation-for="EncargadoCargo" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <div class="form-floating mb-3">
+                                <input asp-for="EncargadoCorreo" class="form-control" id="floatingInput" placeholder="Nombre del campo" />
+                                <label asp-for="EncargadoCorreo"></label>
+                                <span asp-validation-for="EncargadoCorreo" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-10">
+                            <input class="form-check-input" type="checkbox" asp-for="TieneProgramas">&nbsp;
+                            <label class="form-check-label" asp-for="TieneProgramas"></label>
+                        </div>
+                    </div>
+                    <div class="form-group-row pt-5 pb-5">
+                        <div class="col-8">
+                            <partial name="_VistaCrearVolver"></partial>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/gestion_js/direcciones_generales.js"></script>
+    @{
+        <partial name="_ValidationScriptsPartial" />
+
+
+    }
+   
+    @if (TempData["err"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                swal({
+                    title: "Error!",
+                    text: "El nombre de la dirección o área que deseas agregar ya se encuentra registrado en el sistema.",
+                    type: "error"
+                });
+            };
+        </script>
+    }
+}
